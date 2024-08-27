@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brian - Brian Kipchumba</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .navbar {
+            background-color: #e60012;
+        }
+
+        .navbar-brand {
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ddd;
+        }
+
+        .carousel-item img {
+            height: 100vh; /* Full height of the viewport */
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            position: absolute;
+            top: 20%; /* Adjusted to push up the caption */
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        .carousel-caption h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .carousel-caption p {
+            font-size: 1.5rem;
+        }
+
+        .section-bg {
+            background: url('images/behindtext.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            padding: 4rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(94, 66, 172, 0.5);
+            z-index: -1; /* Place it behind the content */
+        }
+
+        .section-padding {
+            padding: 4rem 0;
+        }
+
+        .service-item {
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .portfolio-item {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .portfolio-item h3 {
+            margin: 1rem 0;
+        }
+
+        .blog-item {
+            margin-bottom: 1.5rem;
+        }
+
+        footer {
+            background-color: #222;
+            padding: 1rem 0;
+            color: #fff;
+        }
+
+        footer a {
+            color: #e60012;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            margin-bottom: 1rem;
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #555;
+        }
+
+        .contact-form button {
+            background-color: #e60012;
+            color: white;
+        }
+
+        .contact-form button:hover {
+            background-color: #c9000d;
+        }
+
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .preloader .spinner-border {
+            color: #e60012;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' class='bi bi-list' viewBox='0 0 16 16'><path d='M1 3.5A.5.5 0 0 1 1.5 3h13a.5.5 0 0 1 .5.5v.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-.5zm0 4A.5.5 0 0 1 1.5 7h13a.5.5 0 0 1 .5.5v.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-.5zm0 4A.5.5 0 0 1 1.5 11h13a.5.5 0 0 1 .5.5v.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-.5z'/></svg>");
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .personal-info img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .personal-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .personal-info h2 {
+            margin-top: 1rem;
+            font-size: 2rem;
+        }
+
+        .personal-info p {
+            font-size: 1.2rem;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" alt="Brian Logo" style="max-height: 50px;"> Brian
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#resume">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blogs">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section with Slideshow -->
+    <header id="home" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="images/slide1.jpg" alt="Slide 1">
+                <div class="carousel-caption">
+                    <h1>Hi, I'm Brian Kipchumba</h1>
+                    <p>I’m a freelance React, Flutter, Python, and HTML Developer with a focus on full-stack development and AI.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="images/slide2.jpg" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+                <img src="images/slide3.jpg" alt="Slide 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#home" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#home" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section-bg section-padding">
+        <div class="container">
+            <div class="personal-info">
+                <img src="images/brian-kipchumba.png" alt="Brian Kipchumba">
+                <h2>Hi, I'm Brian Kipchumba</h2>
+                <p>I’m a freelance React, Flutter, Python, and HTML Developer with a focus on full-stack development and AI.</p>
+                <h3>Personal Details</h3>
+                <p>Date of birth: 04 January 2002<br> Spoken Languages: English - Kiswahili<br> Nationality: Kenyan<br> Interests: Music, Coding, Volleyball</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-bg section-padding">
+        <div class="container">
+            <h2 class="text-center">Our Services</h2>
+            <div class="row">
+                <div class="col-md-4 service-item">
+                    <i class="fas fa-hands-helping fa-3x mb-2" style="color: #e60012;"></i>
+                    <h3>Exceptional Assistance</h3>
+                    <p>A brief overview of our dedicated support for navigating complex coding challenges and optimizing software solutions.</p>
+                </div>
+                <div class="col-md-4 service-item">
+                    <i class="fas fa-cogs fa-3x mb-2" style="color: #e60012;"></i>
+                    <h3>Adaptive Progress</h3>
+                    <p>Efficiently enhance code standards and ensure robust, scalable solutions with our advanced development services.</p>
+                </div>
+                <div class="col-md-4 service-item">
+                    <i class="fas fa-brain fa-3x mb-2" style="color: #e60012;"></i>
+                    <h3>Brand Identity</h3>
+                    <p>Distinctly positioned at the intersection of innovation and design, our approach integrates seamlessly with your vision, delivering a strong, cohesive brand presence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section-bg section-padding">
+        <div class="container">
+            <h2 class="text-center">Education & Experience</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Education</h3>
+                    <p><strong>Kenya Certificate Of Secondary Education</strong><br>2018 - 2022<br>Tabolwa Secondary School</p>
+                    <p><strong>Diploma in Information Communication Technology</strong><br>2022 - 2025</p>
+                    <p><strong>Kenya Certificate Of Primary Education</strong><br>2008 - 2017</p>
+                </div>
+                <div class="col-md-6">
+                    <h3>Experience</h3>
+                    <p><strong>DevOps Web Designers: Web Design Company in Nairobi</strong><br>2022 - 2023<br>Delivered quality code by applying the best development practices.</p>
+                    <p><strong>Google Developer Students Club _ App & Development</strong><br>2022 - 2023</p>
+                    <p><strong>Remotask - AI & Freelance Company</strong><br>2022 - 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-bg section-padding">
+        <div class="container">
+            <h2 class="text-center">My Projects</h2>
+            <div class="row">
+                <div class="col-md-4 portfolio-item">
+                    <i class="fab fa-angular fa-3x mb-2" style="color: #e60012;"></i>
+                    <h3>Exemplary Real World Application</h3>
+                    <a href="https://github.com/gothinkster/angular-realworld-example-app" target="_blank">
+                        <img src="images/project1.jpg" alt="Angular Project">
+                    </a>
+                </div>
+                <div class="col-md-4 portfolio-item">
+                    <i class="fab fa-react fa-3x mb-2" style="color: #e60012;"></i>
+                    <h3>Realworld React Application</h3>
+                    <a href="https://github.com/gothinkster/react-realworld-example-app" target="_blank">
+                        <img src="images/project2.jpg" alt="React Project">
+                    </a>
+                </div>
+                <div class="col-md-4 portfolio-item">
+                    <i class="fas fa-check fa-3x mb-2" style="color: #e60012;"></i>
+                    <h3>Todo Application</h3>
+                    <a href="https://github.com/tastejs/todomvc/tree/master/examples/jquery" target="_blank">
+                        <img src="images/project3.jpg" alt="Todo Application">
+                    </a>
+                </div>
+                <div class="col-md-4 portfolio-item">
+                    <i class="fab fa-bootstrap fa-3x mb-2" style="color: #e60012;"></i>
+                    <h3>Bootstrap Album</h3>
+                    <a href="https://abcd-Example.com" target="_blank">
+                        <img src="images/project4.jpg" alt="Bootstrap Album">
+                    </a>
+                </div>
+                <div class="col-md-4 portfolio-item">
+                    <i class="fab fa-vuejs fa-3x mb-2" style="color: #e60012;"></i>
+                    <h3>Website Example</h3>
+                    <a href="https://javascript30.com/" target="_blank">
+                        <img src="images/project5.jpg" alt="Website Example">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blogs Section -->
+    <section id="blogs" class="section-bg section-padding">
+        <div class="container">
+            <h2 class="text-center">Latest News & Insights</h2>
+            <div class="row">
+                <div class="col-md-4 blog-item">
+                    <h3>Change the world with small things</h3>
+                    <p>Charles Woodall - 14 Feb 2022</p>
+                    <a href="#">Read more</a>
+                </div>
+                <div class="col-md-4 blog-item">
+                    <h3>With a clean, minimal and professional look</h3>
+                    <p>Jarvis Owen - 12 Jan 2022</p>
+                    <a href="#">Read more</a>
+                </div>
+                <div class="col-md-4 blog-item">
+                    <h3>With a clean, minimal and professional look</h3>
+                    <p>Jarvis Owen - 12 Jan 2022</p>
+                    <a href="#">Read more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-bg section-padding">
+        <div class="container">
+            <h2 class="text-center">Get in Touch</h2>
+            <form class="contact-form">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" placeholder="Your name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="email" class="form-control" placeholder="Your email" required>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" placeholder="Subject" required>
+                    </div>
+                    <div class="col-md-12">
+                        <textarea class="form-control" rows="5" placeholder="Enter your message..." required></textarea>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <p>&copy; 2024 Brian. Created with <span>&#9829;</span> by Brian Kipchumba</p>
+        <p>
+            <a href="#">Terms & Conditions</a>
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Hide preloader when the page is fully loaded
+        window.addEventListener('load', function() {
+            document.querySelector('.preloader').style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
