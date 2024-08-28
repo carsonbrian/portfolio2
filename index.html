@@ -13,28 +13,53 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #000;
-            color: #fff;
+            background-color: #ffffff;
+            color: #292727;
+        }
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/smart-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.1; /* Adjust this value to change the opacity */
+            z-index: -1;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+        }
+        .navbar {
+            background-color: #ecc2c2;
+            transition: background-color 0.3s ease;
         }
 
-        .navbar {
-            background-color: #e60012;
+        .navbar.scrolled {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
         }
 
         .navbar-brand {
-            color: #fff;
+            color: #0515f7;
+            transition: color 0.3s ease;
         }
 
         .navbar-nav .nav-link {
-            color: #fff;
+            color: #1505f5;
+            transition: color 0.3s ease;
         }
 
         .navbar-nav .nav-link:hover {
-            color: #ddd;
+            color: #fa0303;
         }
 
         .carousel-item img {
-            height: 100vh; /* Full height of the viewport */
+            height: 100vh;
             object-fit: cover;
             width: 100%;
         }
@@ -43,7 +68,7 @@
             background: rgba(0, 0, 0, 0.5);
             padding: 1rem;
             position: absolute;
-            top: 20%; /* Adjusted to push up the caption */
+            top: 20%;
             left: 0;
             right: 0;
             text-align: center;
@@ -52,14 +77,26 @@
         .carousel-caption h1 {
             font-size: 3rem;
             margin-bottom: 0.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .carousel-caption p {
             font-size: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
+        }
+
+        .carousel-item.active .carousel-caption h1,
+        .carousel-item.active .carousel-caption p {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-bg {
-            background: url('images/behindtext.jpeg') no-repeat center center fixed;
+            background: url('images/smart-background.jpg') no-repeat center center fixed;
             background-size: cover;
             padding: 4rem 0;
             position: relative;
@@ -73,8 +110,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(94, 66, 172, 0.5);
-            z-index: -1; /* Place it behind the content */
+            background: rgba(241, 238, 243, 0.5);
+            z-index: -1;
         }
 
         .section-padding {
@@ -83,12 +120,18 @@
 
         .service-item {
             text-align: center;
-            margin: 1rem 0;
+            margin: 2rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
         }
 
         .portfolio-item {
             text-align: center;
             margin-bottom: 2rem;
+            overflow: hidden;
         }
 
         .portfolio-item img {
@@ -96,6 +139,11 @@
             height: auto;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
         }
 
         .portfolio-item h3 {
@@ -104,33 +152,46 @@
 
         .blog-item {
             margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-item:hover {
+            transform: translateY(-5px);
         }
 
         footer {
-            background-color: #222;
+            background-color: #1304ee;
             padding: 1rem 0;
             color: #fff;
         }
 
         footer a {
-            color: #e60012;
+            color: #1605ff;
+            transition: color 0.3s ease;
         }
 
         footer a:hover {
-            color: #fff;
+            color: #1e05ff;
         }
 
         .contact-form input,
         .contact-form textarea {
             margin-bottom: 1rem;
-            background-color: #333;
+            background-color: #f3ebeb;
             color: #fff;
-            border: 1px solid #555;
+            border: 1px solid #000000;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #0400e6;
         }
 
         .contact-form button {
-            background-color: #e60012;
+            background-color: #0400e6;
             color: white;
+            transition: background-color 0.3s ease;
         }
 
         .contact-form button:hover {
@@ -151,7 +212,7 @@
         }
 
         .preloader .spinner-border {
-            color: #e60012;
+            color: #1605ff;
         }
 
         .navbar-toggler-icon {
@@ -168,6 +229,11 @@
             border-radius: 50%;
             margin: 0 auto;
             display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .personal-info img:hover {
+            transform: scale(1.05);
         }
 
         .personal-info {
@@ -184,10 +250,27 @@
             font-size: 1.2rem;
         }
 
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease forwards;
+        }
     </style>
 </head>
 
 <body>
+    <div class="bg-image"></div>
+    <div class="content-wrapper">
 
     <!-- Preloader -->
     <div class="preloader">
@@ -235,20 +318,14 @@
     </nav>
 
     <!-- Home Section with Slideshow -->
-    <header id="home" class="carousel slide">
+    <header id="home" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="images/slide1.jpg" alt="Slide 1">
+                <img src="images/slide3.jpg" alt="Slide 1">
                 <div class="carousel-caption">
                     <h1>Hi, I'm Brian Kipchumba</h1>
-                    <p>I’m a freelance React, Flutter, Python, and HTML Developer with a focus on full-stack development and AI.</p>
+                    <p>I'm a freelance React, Flutter, Python, and HTML Developer with a focus on full-stack development and AI.</p>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <img src="images/slide2.jpg" alt="Slide 2">
-            </div>
-            <div class="carousel-item">
-                <img src="images/slide3.jpg" alt="Slide 3">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#home" data-bs-slide="prev">
@@ -265,11 +342,11 @@
     <section id="about" class="section-bg section-padding">
         <div class="container">
             <div class="personal-info">
-                <img src="images/brian-kipchumba.png" alt="Brian Kipchumba">
-                <h2>Hi, I'm Brian Kipchumba</h2>
-                <p>I’m a freelance React, Flutter, Python, and HTML Developer with a focus on full-stack development and AI.</p>
-                <h3>Personal Details</h3>
-                <p>Date of birth: 04 January 2002<br> Spoken Languages: English - Kiswahili<br> Nationality: Kenyan<br> Interests: Music, Coding, Volleyball</p>
+                <img src="images/brian-kipchumba.png" alt="Brian Kipchumba" class="scroll-reveal">
+                <h2 class="scroll-reveal">Hi, I'm Brian Kipchumba</h2>
+                <p class="scroll-reveal">I'm a freelance React, Flutter, Python, and HTML Developer with a focus on full-stack development and AI.</p>
+                <h3 class="scroll-reveal">Personal Details</h3>
+                <p class="scroll-reveal">Date of birth: 04 January 2002<br> Spoken Languages: English - Kiswahili<br> Nationality: Kenyan<br> Interests: Music, Coding, Volleyball</p>
             </div>
         </div>
     </section>
@@ -277,19 +354,19 @@
     <!-- Services Section -->
     <section id="services" class="section-bg section-padding">
         <div class="container">
-            <h2 class="text-center">Our Services</h2>
+            <h2 class="text-center scroll-reveal">My Services</h2>
             <div class="row">
-                <div class="col-md-4 service-item">
+                <div class="col-md-4 service-item scroll-reveal">
                     <i class="fas fa-hands-helping fa-3x mb-2" style="color: #e60012;"></i>
                     <h3>Exceptional Assistance</h3>
                     <p>A brief overview of our dedicated support for navigating complex coding challenges and optimizing software solutions.</p>
                 </div>
-                <div class="col-md-4 service-item">
+                <div class="col-md-4 service-item scroll-reveal">
                     <i class="fas fa-cogs fa-3x mb-2" style="color: #e60012;"></i>
                     <h3>Adaptive Progress</h3>
                     <p>Efficiently enhance code standards and ensure robust, scalable solutions with our advanced development services.</p>
                 </div>
-                <div class="col-md-4 service-item">
+                <div class="col-md-4 service-item scroll-reveal">
                     <i class="fas fa-brain fa-3x mb-2" style="color: #e60012;"></i>
                     <h3>Brand Identity</h3>
                     <p>Distinctly positioned at the intersection of innovation and design, our approach integrates seamlessly with your vision, delivering a strong, cohesive brand presence.</p>
@@ -301,15 +378,15 @@
     <!-- Resume Section -->
     <section id="resume" class="section-bg section-padding">
         <div class="container">
-            <h2 class="text-center">Education & Experience</h2>
+            <h2 class="text-center scroll-reveal">Education & Experience</h2>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 scroll-reveal">
                     <h3>Education</h3>
                     <p><strong>Kenya Certificate Of Secondary Education</strong><br>2018 - 2022<br>Tabolwa Secondary School</p>
                     <p><strong>Diploma in Information Communication Technology</strong><br>2022 - 2025</p>
                     <p><strong>Kenya Certificate Of Primary Education</strong><br>2008 - 2017</p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 scroll-reveal">
                     <h3>Experience</h3>
                     <p><strong>DevOps Web Designers: Web Design Company in Nairobi</strong><br>2022 - 2023<br>Delivered quality code by applying the best development practices.</p>
                     <p><strong>Google Developer Students Club _ App & Development</strong><br>2022 - 2023</p>
@@ -322,37 +399,37 @@
     <!-- Projects Section -->
     <section id="projects" class="section-bg section-padding">
         <div class="container">
-            <h2 class="text-center">My Projects</h2>
+            <h2 class="text-center scroll-reveal">My Projects</h2>
             <div class="row">
-                <div class="col-md-4 portfolio-item">
+                <div class="col-md-4 portfolio-item scroll-reveal">
                     <i class="fab fa-angular fa-3x mb-2" style="color: #e60012;"></i>
                     <h3>Exemplary Real World Application</h3>
                     <a href="https://github.com/gothinkster/angular-realworld-example-app" target="_blank">
                         <img src="images/project1.jpg" alt="Angular Project">
                     </a>
                 </div>
-                <div class="col-md-4 portfolio-item">
+                <div class="col-md-4 portfolio-item scroll-reveal">
                     <i class="fab fa-react fa-3x mb-2" style="color: #e60012;"></i>
                     <h3>Realworld React Application</h3>
                     <a href="https://github.com/gothinkster/react-realworld-example-app" target="_blank">
                         <img src="images/project2.jpg" alt="React Project">
                     </a>
                 </div>
-                <div class="col-md-4 portfolio-item">
+                <div class="col-md-4 portfolio-item scroll-reveal">
                     <i class="fas fa-check fa-3x mb-2" style="color: #e60012;"></i>
                     <h3>Todo Application</h3>
                     <a href="https://github.com/tastejs/todomvc/tree/master/examples/jquery" target="_blank">
                         <img src="images/project3.jpg" alt="Todo Application">
                     </a>
                 </div>
-                <div class="col-md-4 portfolio-item">
+                <div class="col-md-4 portfolio-item scroll-reveal">
                     <i class="fab fa-bootstrap fa-3x mb-2" style="color: #e60012;"></i>
                     <h3>Bootstrap Album</h3>
                     <a href="https://abcd-Example.com" target="_blank">
                         <img src="images/project4.jpg" alt="Bootstrap Album">
                     </a>
                 </div>
-                <div class="col-md-4 portfolio-item">
+                <div class="col-md-4 portfolio-item scroll-reveal">
                     <i class="fab fa-vuejs fa-3x mb-2" style="color: #e60012;"></i>
                     <h3>Website Example</h3>
                     <a href="https://javascript30.com/" target="_blank">
@@ -366,19 +443,19 @@
     <!-- Blogs Section -->
     <section id="blogs" class="section-bg section-padding">
         <div class="container">
-            <h2 class="text-center">Latest News & Insights</h2>
+            <h2 class="text-center scroll-reveal">Latest News & Insights</h2>
             <div class="row">
-                <div class="col-md-4 blog-item">
+                <div class="col-md-4 blog-item scroll-reveal">
                     <h3>Change the world with small things</h3>
                     <p>Charles Woodall - 14 Feb 2022</p>
                     <a href="#">Read more</a>
                 </div>
-                <div class="col-md-4 blog-item">
+                <div class="col-md-4 blog-item scroll-reveal">
                     <h3>With a clean, minimal and professional look</h3>
                     <p>Jarvis Owen - 12 Jan 2022</p>
                     <a href="#">Read more</a>
                 </div>
-                <div class="col-md-4 blog-item">
+                <div class="col-md-4 blog-item scroll-reveal">
                     <h3>With a clean, minimal and professional look</h3>
                     <p>Jarvis Owen - 12 Jan 2022</p>
                     <a href="#">Read more</a>
@@ -390,22 +467,22 @@
     <!-- Contact Section -->
     <section id="contact" class="section-bg section-padding">
         <div class="container">
-            <h2 class="text-center">Get in Touch</h2>
+            <h2 class="text-center scroll-reveal">Get in Touch</h2>
             <form class="contact-form">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 scroll-reveal">
                         <input type="text" class="form-control" placeholder="Your name" required>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 scroll-reveal">
                         <input type="email" class="form-control" placeholder="Your email" required>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 scroll-reveal">
                         <input type="text" class="form-control" placeholder="Subject" required>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 scroll-reveal">
                         <textarea class="form-control" rows="5" placeholder="Enter your message..." required></textarea>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 scroll-reveal">
                         <button type="submit" class="btn btn-primary">Send Message</button>
                     </div>
                 </div>
@@ -423,10 +500,69 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
     <script>
         // Hide preloader when the page is fully loaded
         window.addEventListener('load', function() {
             document.querySelector('.preloader').style.display = 'none';
+        });
+
+        // Navbar color change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Initialize ScrollReveal
+        ScrollReveal().reveal('.scroll-reveal', {
+            delay: 200,
+            distance: '20px',
+            origin: 'bottom',
+            opacity: 0,
+            duration: 1000,
+            easing: 'cubic-bezier(0.5, 0, 0, 1)',
+            interval: 100
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Carousel caption animation
+        const carousel = document.querySelector('#home');
+        carousel.addEventListener('slide.bs.carousel', function (e) {
+            const caption = e.relatedTarget.querySelector('.carousel-caption');
+            caption.querySelector('h1').style.opacity = 0;
+            caption.querySelector('p').style.opacity = 0;
+            caption.querySelector('h1').style.transform = 'translateY(20px)';
+            caption.querySelector('p').style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                caption.querySelector('h1').style.opacity = 1;
+                caption.querySelector('h1').style.transform = 'translateY(0)';
+            }, 300);
+            
+            setTimeout(() => {
+                caption.querySelector('p').style.opacity = 1;
+                caption.querySelector('p').style.transform = 'translateY(0)';
+            }, 500);
+        });
+
+        // Background parallax effect
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const bgImage = document.querySelector('.bg-image');
+            bgImage.style.transform = 'translateY(' + (scrolled * 0.3) + 'px)';
         });
     </script>
 </body>
